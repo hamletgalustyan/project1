@@ -17,14 +17,19 @@ jobs:
     
     steps:
       - name: Print Hello Message in Testing
-        run: echo "Hello World from Testing job"
+        run : echo "Hello World from Testing job"
       
       - name: Execute few commands
-        run: |
+        run : |
           echo "Hello MSG1"
           echo "Hello MSG2"
           echo "APP Name: ${{ env.APP_NAME }}"
-        
+      
+      - name: Git clone my repo
+        uses: actions/checkout@v1
+      
+      - name: List current folder
+        run : ls -la
     
   my_deploy:
     runs-on: [ubuntu-latest]
@@ -32,8 +37,14 @@ jobs:
     
     steps:
       - name: Print Hello Message in Deploy
-        run: echo "Hello World from Deploy job"
+        run : echo "Hello World from Deploy job"
       
       - name: Print Deployment PKG
-        run: |
+        run : |
           echo "APP Name: ${{ env.DEPLOY_PKG_NAME }}"
+      
+      - name: Lets test some pkg if the are here 1
+        run : aws --version
+      
+      - name: Lets test some pkg if the are here 2
+        run : zip
